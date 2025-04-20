@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip Plan</title>
+</head>
+<body>
+    <h1>Your Trip Plan</h1>
+    {% if trip_plan %}
+        <h2>Daily Itinerary: Places</h2>
+        <table border="1">
+            <tr>
+                <th>Day</th>
+                <th>Place Name</th>
+                <th>Place Zone</th>
+                <th>Place State</th>
+                <th>Place City</th>
+                <th>Place Significance</th>
+                <th>Place Google Review Rating</th>
+                <th>Entrance Fee (INR)</th>
+                <th>Airport (Within 50km)</th>
+                <th>Best Time to Visit</th>
+            </tr>
+            {% for day in trip_plan %}
+                <tr>
+                    <td>{{ day.Day }}</td>
+                    <td>{{ day.Place_Name }}</td>
+                    <td>{{ day.Place_Zone }}</td>
+                    <td>{{ day.Place_State }}</td>
+                    <td>{{ day.Place_City }}</td>
+                    <td>{{ day.Place_Significance }}</td>
+                    <td>{{ day.Place_GoogleReviewRating }}</td>
+                    <td>{{ day.Place_EntranceFeeinINR }}</td>
+                    <td>{{ day.Place_Airportwith50kmRadius }}</td>
+                    <td>{{ day.Place_BestTimetovisit }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Daily Itinerary: Restaurants</h2>
+        <table border="1">
+            <tr>
+                <th>Day</th>
+                <th>Restaurant Name</th>
+                <th>Location</th>
+                <th>Locality</th>
+                <th>City</th>
+                <th>Restaurant Cuisine</th>
+                <th>Restaurant Rating</th>
+                <th>Cost</th>
+            </tr>
+            {% for day in trip_plan %}
+                <tr>
+                    <td>{{ day.Day }}</td>
+                    <td>{{ day.Restaurant_Name }}</td>
+                    <td>{{ day.Restaurant_Location }}</td>
+                    <td>{{ day.Restaurant_Locality }}</td>
+                    <td>{{ day.Restaurant_City }}</td>
+                    <td>{{ day.Restaurant_Cuisine }}</td>
+                    <td>{{ day.Restaurant_Rating }}</td>
+                    <td>{{ day.Restaurant_Cost }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Hotel Recommendation:</h2>
+        <p><strong>Name:</strong> {{ hotel.Name }}</p>
+        <p><strong>Location:</strong> {{ hotel.Location }}</p>
+        <p><strong>Rating:</strong> {{ hotel.Rating }}</p>
+    {% else %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>

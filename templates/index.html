@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip Planner</title>
+    <style>
+        .matrix-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns to accommodate 25 items */
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trip Planner</h1>
+    <form action="/plan" method="post">
+        <label for="destination">Destination (Zone, State, City, or Name):</label>
+        <input type="text" id="destination" name="destination" required><br>
+        
+        <label for="days">Number of Days:</label>
+        <input type="number" id="days" name="days" required><br>
+        
+        <label for="significance">Significance (select multiple):</label><br>
+        {% set significance_values = [
+            'Historical', 'Religious', 'Environmental', 'Scientific', 'Market',
+            'Botanical', 'Artistic', 'Scenic', 'Wildlife', 'Recreational', 'Nature',
+            'Architectural', 'Entertainment', 'Sports', 'Educational', 'Cultural', 'Food',
+            'Spiritual', 'Archaeological', 'Adventure', 'Agricultural',
+            'Engineering Marvel', 'Natural Wonder', 'Trekking', 'Shopping'
+        ] %}
+        <div class="matrix-container">
+            {% for value in significance_values %}
+                <label>
+                    <input type="checkbox" name="significance" value="{{ value }}">
+                    {{ value }}
+                </label><br>
+            {% endfor %}
+        </div><br>
+        
+        <label for="budget">Budget (High, Medium, Low):</label>
+        <input type="text" id="budget" name="budget"><br>
+        
+        <label for="group_type">Group Type:</label>
+        <select name="group_type" id="group_type">
+            <option value="family">Family</option>
+            <option value="friends">Friends</option>
+            <option value="couple">Couple</option>
+            <option value="solo">Solo</option>
+        </select><br>
+
+        <label for="group_size">Group Size:</label>
+        <input type="number" id="group_size" name="group_size" required><br>
+
+        <input type="submit" value="Generate Plan">
+    </form>
+</body>
+</html>
